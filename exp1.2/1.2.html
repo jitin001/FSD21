@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>"Experiment 1.2"</title>
+    <link rel="stylesheet" href="style1_2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Responsive Bank UI</h2>
+        <h2>Balance : $ <span id="balance"></span></h2>
+        <label for ='amount'>Amount</label> <br><br>
+        <input type ='number' placeholder = "Enter amount" id="amount">
+        <br><br>
+        <button id ="b1" onclick="deposit()">Deposit</button> &nbsp; &nbsp;
+        <button id ="b2" onclick="withdraw()">Withdraw</button>
+        <p id = "message"></p>
+    </div>
+</body>
+<script>
+    let balance = 0;
+
+    function deposit() {
+        let amount = document.getElementById('amount').value;
+        if(amount>0){
+            balance = balance + Number(amount);
+            document.getElementById('balance').innerText = balance;
+            document.getElementById('message').innerText = 'Successfully deposited';
+        } else {
+            document.getElementById('message').innerText = 'Enter a valid amount';
+        }
+        document.getElementById('amount').value = '';
+    }
+    function withdraw() {
+        let amount = document.getElementById('amount').value;
+        if(amount > 0 && amount <= balance){
+            balance = balance - Number(amount);
+            document.getElementById('balance').innerText = balance;
+            document.getElementById('message').innerText = 'Successfully withdrew';
+        } else if(amount > balance) {
+            document.getElementById('message').innerText = 'Insufficient balance';
+        } else {
+            document.getElementById('message').innerText = 'Enter a valid amount';
+        }
+        document.getElementById('amount').value = '';
+    }
+</script>
+</html>
